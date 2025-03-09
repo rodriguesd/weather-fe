@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {Flex, Layout} from 'antd';
 import React from 'react';
 import { SyncOutlined } from '@ant-design/icons';
+import { ClipLoader } from 'react-spinners';
 
 
 const {Header, Footer, Sider, Content} = Layout;
@@ -132,6 +133,13 @@ function App() {
 
     return (
         <>
+
+            {(currentLoading  || extLoading) && (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
+                    <ClipLoader color="#123abc" loading={extLoading || currentLoading} size={50} />
+                </div>
+            )}
+
 
             <div style={{ paddingTop: '40px' }}>
 

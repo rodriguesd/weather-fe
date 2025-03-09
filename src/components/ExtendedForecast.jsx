@@ -7,22 +7,22 @@ export default function ExtendedForecast({extData}) {
     const columns = [
         {
             title: 'Date',
-            dataIndex: 'date',
+            dataIndex: 'date-ext',
             key: 'date-ext',
         },
         {
             title: 'Current Temp',
-            dataIndex: 'currentTemp',
+            dataIndex: 'currentTemp-ext',
             key: 'currentTemp-ext',
         },
         {
             title: 'Low Temp',
-            dataIndex: 'lowTemp',
+            dataIndex: 'lowTemp-ext',
             key: 'lowTemp-ext',
         },
         {
             title: 'High Temp',
-            dataIndex: 'highTemp',
+            dataIndex: 'highTemp-ext',
             key: 'highTem-ext',
         },
     ];
@@ -32,6 +32,7 @@ export default function ExtendedForecast({extData}) {
 
         extData.extended.forEach((entry, index) => {
             dynamicData.push({
+                key: entry.key,
                 date: entry.date,
                 currentTemp: entry.currentTemp,
                 lowTemp: entry.lowTemp,
