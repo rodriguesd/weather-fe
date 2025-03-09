@@ -32,7 +32,7 @@ export default function ExtendedForecast({extData}) {
 
         extData.extended.forEach((entry, index) => {
             dynamicData.push({
-                key: entry.key,
+                key: index,
                 date: entry.date,
                 currentTemp: entry.currentTemp,
                 lowTemp: entry.lowTemp,
