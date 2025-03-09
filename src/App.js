@@ -41,6 +41,8 @@ function App() {
                         const temp = await response.json();
                         setErrorMessage(temp.message);
                         setHasErrror(true);
+                        setCurrentData('');
+                        setCurrentCache(false)
                         return;
                     }
                     const json = await response.json();
@@ -64,6 +66,8 @@ function App() {
                         const temp = await response.json();
                         setErrorMessage(temp.message);
                         setHasErrror(true);
+                        setExtData('');
+                        setExtCache(false)
                         return;
                     }
                     const json = await response.json();
@@ -214,7 +218,7 @@ function App() {
                 </div>
             </div>
 
-                {!hasErrror &&  currentData &&
+                {currentData &&
 
                     <Flex>
                         <Layout style={layoutStyle}>
