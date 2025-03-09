@@ -45,7 +45,7 @@ export default function AddressInputs({callback}) {
                                 {pattern: /^\d{5}(-\d{4})?$/, message: 'Enter a valid 5-digit zip code'},
                             ]}
                         >
-                            <Input ref={zipRef} placeholder="Zip Code"/>
+                            <Input maxLength={5} ref={zipRef} placeholder="Zip Code"/>
                         </Form.Item>
                         <Button type="primary" htmlType="submit">Submit</Button>
                     </Form></td>
