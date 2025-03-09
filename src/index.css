@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.myTitle {
+  font-family: 'Arial', sans-serif;  /* Replace 'Arial' with your preferred font */
+  font-size: 20px;                   /* Adjust the font size as needed */
+  font-weight: bold;                 /* Optional: make the font bold */
+  color: #333;                       /* Optional: change the text color */
+}
