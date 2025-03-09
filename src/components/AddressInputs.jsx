@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Button, Form, Input, Select} from 'antd';
 import CountryCodes from '../config/country_codes.json';
 import {useRef} from 'react';
@@ -6,15 +6,15 @@ import {useRef} from 'react';
 export default function AddressInputs({callback}) {
 
     const zipRef = useRef(null);
+    const [countryCode, setCountryCode] = useState('US');
 
-    let cc = CountryCodes[0].value;
     const handleChange = (value) => {
-        cc = value;
+        setCountryCode(value)
     };
 
     const getZipAndCountryCode = () => {
         const zip = zipRef.current.input.value;
-        callback(cc, zip);
+        callback(countryCode, zip);
     };
 
 
@@ -45,7 +45,7 @@ export default function AddressInputs({callback}) {
                                 {pattern: /^\d{5}(-\d{4})?$/, message: 'Enter a valid 5-digit zip code'},
                             ]}
                         >
-                            <Input ref={zipRef} placeholder="Zip Code"/>
+                            <Input maxLength={5} ref={zipRef} placeholder="Zip Code"/>
                         </Form.Item>
                         <Button type="primary" htmlType="submit">Submit</Button>
                     </Form></td>
