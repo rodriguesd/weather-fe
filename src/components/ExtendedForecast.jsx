@@ -7,22 +7,22 @@ export default function ExtendedForecast({extData}) {
     const columns = [
         {
             title: 'Date',
-            dataIndex: 'date-ext',
+            dataIndex: 'date',
             key: 'date-ext',
         },
         {
             title: 'Current Temp',
-            dataIndex: 'currentTemp-ext',
+            dataIndex: 'currentTemp',
             key: 'currentTemp-ext',
         },
         {
             title: 'Low Temp',
-            dataIndex: 'lowTemp-ext',
+            dataIndex: 'lowTemp',
             key: 'lowTemp-ext',
         },
         {
             title: 'High Temp',
-            dataIndex: 'highTemp-ext',
+            dataIndex: 'highTemp',
             key: 'highTem-ext',
         },
     ];

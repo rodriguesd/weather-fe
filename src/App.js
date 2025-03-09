@@ -135,7 +135,7 @@ function App() {
         <>
 
             {(currentLoading  || extLoading) && (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width:'100%' }}>
                     <ClipLoader color="#123abc" loading={extLoading || currentLoading} size={50} />
                 </div>
             )}
