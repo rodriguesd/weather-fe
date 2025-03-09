@@ -4,6 +4,9 @@ import CurrentForecast from "./components/CurrentForecast";
 import ExtendedForecast from "./components/ExtendedForecast";
 import {useEffect, useState} from "react";
 import {Flex, Layout} from 'antd';
+import React from 'react';
+import { SyncOutlined } from '@ant-design/icons';
+
 
 const {Header, Footer, Sider, Content} = Layout;
 
@@ -129,7 +132,9 @@ function App() {
 
     return (
         <>
+
             <div style={{ paddingTop: '40px' }}>
+
 
                 <Flex>
                     <Layout style={layoutStyle}>
@@ -140,6 +145,21 @@ function App() {
                 </Flex>
 
             </div>
+
+
+
+            <div style={{
+                placeItems: "center",
+            }}>
+                <div style={{
+                    backgroundColor: "white",
+                    padding: "20px",
+                }}>
+                    {currentCache && <div> <SyncOutlined style={{ fontSize: '24px', color: '#1890ff' }} />
+                        <span style={{ marginLeft: '8px', fontSize: '24px', fontStyle: "-moz-initial", fontWeight:"bold" }}>Cached</span></div>}
+                </div>
+            </div>
+
                 {currentData &&
 
                     <Flex>
@@ -151,6 +171,19 @@ function App() {
                     </Flex>
                 }
 
+
+            <div style={{
+                placeItems: "center",
+            }}>
+                <div style={{
+                    backgroundColor: "white",
+                    padding: "20px",
+                }}>
+                    {extCache && <div> <SyncOutlined style={{ fontSize: '24px', color: '#1890ff' }} />
+                        <span style={{ marginLeft: '8px', fontSize: '24px', fontStyle: "-moz-initial", fontWeight:"bold" }}>Cached</span></div>}
+
+                </div>
+            </div>
 
                 {extData &&
 
