@@ -19,3 +19,11 @@ code {
   font-weight: bold;                 /* Optional: make the font bold */
   color: #333;                       /* Optional: change the text color */
 }
+
+
+.addressContainer {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  /*align-items: center; !* Centers vertically *!*/
+  height: 25vh; /* Full viewport height */
+}

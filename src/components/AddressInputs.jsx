@@ -20,30 +20,67 @@ export default function AddressInputs({callback}) {
 
     return (<>
 
-        <div>
-            <Select onChange={handleChange} style={{width: 200}} placeholder="United States">
-                {CountryCodes.map((item) => (
-                    <Select.Option  key={item.value} value={item.value}>
-                        {item.label}
-                    </Select.Option >
-                ))}
-            </Select>
+        <div className="addressContainer">
+            <table>
+                <tbody>
+
+                <tr>
+                    <td>Country</td>
+                    <td><Select onChange={handleChange} style={{width: 200}} placeholder="United States">
+                        {CountryCodes.map((item) => (
+                            <Select.Option key={item.value} value={item.value}>
+                                {item.label}
+                            </Select.Option>
+                        ))}
+                    </Select></td>
+                </tr>
+
+                <tr>
+                    <td>Zip code</td>
+                    <td><Form onFinish={getZipAndCountryCode}>
+                        <Form.Item
+                            name="zip code"
+                            rules={[
+                                {required: true, message: 'Zip Code is required'},
+                                {pattern: /^\d{5}(-\d{4})?$/, message: 'Enter a valid 5-digit zip code'},
+                            ]}
+                        >
+                            <Input ref={zipRef} placeholder="Zip Code"/>
+                        </Form.Item>
+                        <Button type="primary" htmlType="submit">Submit</Button>
+                    </Form></td>
+                </tr>
+                </tbody>
+
+            </table>
         </div>
 
-        <div>
-            <Form onFinish={getZipAndCountryCode}>
-                <Form.Item
-                    name="zip code"
-                    rules={[
-                        {required: true, message: 'Zip Code is required'},
-                        {pattern: /^\d{5}(-\d{4})?$/, message: 'Enter a valid 5-digit zip code'},
-                    ]}
-                >
-                    <Input ref={zipRef} placeholder="Zip Code"/>
-                </Form.Item>
-                <Button type="primary" htmlType="submit">Submit</Button>
-            </Form>
-        </div>
+
+        {/*<div>*/}
+        {/*    <div>Country</div>*/}
+        {/*    <Select onChange={handleChange} style={{width: 200}} placeholder="United States">*/}
+        {/*        {CountryCodes.map((item) => (*/}
+        {/*            <Select.Option  key={item.value} value={item.value}>*/}
+        {/*                {item.label}*/}
+        {/*            </Select.Option >*/}
+        {/*        ))}*/}
+        {/*    </Select>*/}
+        {/*</div>*/}
+
+        {/*<div>*/}
+        {/*    <Form onFinish={getZipAndCountryCode}>*/}
+        {/*        <Form.Item*/}
+        {/*            name="zip code"*/}
+        {/*            rules={[*/}
+        {/*                {required: true, message: 'Zip Code is required'},*/}
+        {/*                {pattern: /^\d{5}(-\d{4})?$/, message: 'Enter a valid 5-digit zip code'},*/}
+        {/*            ]}*/}
+        {/*        >*/}
+        {/*            <Input ref={zipRef} placeholder="Zip Code"/>*/}
+        {/*        </Form.Item>*/}
+        {/*        <Button type="primary" htmlType="submit">Submit</Button>*/}
+        {/*    </Form>*/}
+        {/*</div>*/}
 
 
     </>);
