@@ -8,22 +8,22 @@ export default function ExtendedForecast({extData}) {
         {
             title: 'Date',
             dataIndex: 'date',
-            key: 'date',
+            key: 'date-ext',
         },
         {
             title: 'Current Temp',
             dataIndex: 'currentTemp',
-            key: 'currentTemp',
+            key: 'currentTemp-ext',
         },
         {
             title: 'Low Temp',
             dataIndex: 'lowTemp',
-            key: 'lowTemp',
+            key: 'lowTemp-ext',
         },
         {
             title: 'High Temp',
             dataIndex: 'highTemp',
-            key: 'highTemp',
+            key: 'highTem-ext',
         },
     ];
     const dynamicData = [];

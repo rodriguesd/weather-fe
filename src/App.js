@@ -13,9 +13,13 @@ function App() {
     const [zip, setZip] = useState('');
     const [currentData, setCurrentData] = useState(null);
     const [currentLoading, setCurrentLoading] = useState(false);
+    const [currentCache, setCurrentCache] = useState(false);
 
     const [extData, setExtData] = useState(null);
     const [extLoading, setExtLoading] = useState(false);
+    const [extCache, setExtCache] = useState(false);
+
+    const [random, setRandom] = useState(false);
 
     useEffect(() => {
 
@@ -29,11 +33,12 @@ function App() {
                     }
                     const json = await response.json();
                     setCurrentData(json);
+                    setCurrentCache(json.cached)
                     // Set data on success
                 } catch (e) {
                     // setError(e);  // Set error if there's an issue
                 } finally {
-                    setCurrentLoading(false);  // Set loading to false when the request is complete
+                    setCurrentLoading(false);
                 }
             };
 
@@ -47,11 +52,12 @@ function App() {
                     }
                     const json = await response.json();
                     setExtData(json);
+                    setExtCache(json.cached)
 
                 } catch (e) {
                     // setError(e);  // Set error if there's an issue
                 } finally {
-                    setExtLoading(false);  // Set loading to false when the request is complete
+                    setExtLoading(false);
                 }
             };
 
@@ -63,11 +69,18 @@ function App() {
         }
 
 
-    }, [countryCode, zip]);  // Re-run when either countryCode or zip changes
+    }, [countryCode, zip, random]);  // Re-run when either countryCode or zip changes
 
     const getZipAndCountryCode = (cc, zip) => {
         setCountryCode(cc);
-        setZip(zip)
+        setZip(zip);
+        if(random)
+        {
+            setRandom(false);
+        }
+        else {
+            setRandom(true);
+        }
 
     };
 
@@ -120,7 +133,7 @@ function App() {
 
                 <Flex>
                     <Layout style={layoutStyle}>
-                        <Header style={headerStyle}><font class="myTitle">Address Input</font></Header>
+                        <Header style={headerStyle}><font className="myTitle">Address Input</font></Header>
                         <Content style={contentStyle}>{<AddressInputs callback={getZipAndCountryCode}/>}</Content>
                         <Footer style={footerStyle}></Footer>
                     </Layout>
@@ -131,7 +144,7 @@ function App() {
 
                     <Flex>
                         <Layout style={layoutStyle}>
-                            <Header style={headerStyle}><font class="myTitle">Current Weather</font></Header>
+                            <Header style={headerStyle}><font className="myTitle">Current Weather</font></Header>
                             <Content style={contentStyle}>{<CurrentForecast currentData={currentData}/>}</Content>
                             <Footer style={footerStyle}></Footer>
                         </Layout>
@@ -143,7 +156,7 @@ function App() {
 
                     <Flex>
                         <Layout style={layoutStyle}>
-                            <Header style={headerStyle}><font class="myTitle">Extended Weather</font></Header>
+                            <Header style={headerStyle}><font className="myTitle">Extended Weather {extCache}</font></Header>
                             <Content style={contentStyle}>{<ExtendedForecast extData={extData}/>}</Content>
 
                         </Layout>
