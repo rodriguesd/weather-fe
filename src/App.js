@@ -3,7 +3,7 @@ import AddressInputs from "./components/AddressInputs";
 import CurrentForecast from "./components/CurrentForecast";
 import ExtendedForecast from "./components/ExtendedForecast";
 import {useEffect, useState} from "react";
-import {Flex, Layout} from 'antd';
+import {Flex, Layout, Modal} from 'antd';
 import React from 'react';
 import { SyncOutlined } from '@ant-design/icons';
 import { ClipLoader } from 'react-spinners';
@@ -25,6 +25,10 @@ function App() {
 
     const [random, setRandom] = useState(false);
 
+    const [errorMessage, setErrorMessage] = useState('');
+    const [status, setStatus] = useState(200);
+    const [hasErrror, setHasErrror] = useState(false);
+
     useEffect(() => {
 
         if (countryCode !== '' && zip !== '') {
@@ -33,7 +37,11 @@ function App() {
                 try {
                     const response = await fetch(`http://127.0.0.1:8080/weather/v1/current/${countryCode}/${zip}`);
                     if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+                        setStatus(response.status);
+                        const temp = await response.json();
+                        setErrorMessage(temp.message);
+                        setHasErrror(true);
+                        return;
                     }
                     const json = await response.json();
                     setCurrentData(json);
@@ -52,7 +60,11 @@ function App() {
                 try {
                     const response = await fetch(`http://127.0.0.1:8080/weather/v1/extended/${countryCode}/${zip}`);
                     if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+                        setStatus(response.status);
+                        const temp = await response.json();
+                        setErrorMessage(temp.message);
+                        setHasErrror(true);
+                        return;
                     }
                     const json = await response.json();
                     setExtData(json);
@@ -87,6 +99,14 @@ function App() {
         }
 
     };
+
+    const clearError = async (e) => {
+        setErrorMessage('');
+        setStatus(200);
+        setHasErrror(false);
+    }
+
+
 
 
     const headerStyle = {
@@ -134,7 +154,33 @@ function App() {
     return (
         <>
 
-            {(currentLoading  || extLoading) && (
+
+
+                <div>
+
+                    <Modal
+
+                        open={hasErrror}
+                        width={500}
+                        keyboard={true}
+                        title={<div style={{marginBottom: '15px'}}>
+                            Error
+                        </div>}
+                        onCancel={clearError}
+                        onOk={clearError}
+                        okText={"OK"}
+                    >
+
+                        <div>{status} {errorMessage}</div>
+
+                    </Modal>
+
+                </div>
+
+
+
+
+            {((currentLoading  || extLoading)) && (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width:'100%' }}>
                     <ClipLoader color="#123abc" loading={extLoading || currentLoading} size={50} />
                 </div>
@@ -168,7 +214,7 @@ function App() {
                 </div>
             </div>
 
-                {currentData &&
+                {!hasErrror &&  currentData &&
 
                     <Flex>
                         <Layout style={layoutStyle}>
@@ -193,7 +239,7 @@ function App() {
                 </div>
             </div>
 
-                {extData &&
+                {  extData &&
 
                     <Flex>
                         <Layout style={layoutStyle}>
