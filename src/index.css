@@ -21,6 +21,13 @@ code {
 }
 
 
+.myTitleCity {
+  font-family: 'Arial', sans-serif;  /* Replace 'Arial' with your preferred font */
+  font-size: 25px;                   /* Adjust the font size as needed */
+  font-weight: bold;                 /* Optional: make the font bold */
+  color: #333;                       /* Optional: change the text color */
+}
+
 .addressContainer {
   display: flex;
   justify-content: center; /* Centers horizontally */

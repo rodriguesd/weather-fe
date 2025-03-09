@@ -196,6 +196,7 @@ function App() {
 
                 <Flex>
                     <Layout style={layoutStyle}>
+                        <Header style={headerStyle}><font className="myTitleCity">Current City: {extData ? extData.city : "NONE"}</font></Header>
                         <Header style={headerStyle}><font className="myTitle">Address Input</font></Header>
                         <Content style={contentStyle}>{<AddressInputs callback={getZipAndCountryCode}/>}</Content>
                         <Footer style={footerStyle}></Footer>
