@@ -11,7 +11,7 @@ export default function ExtendedForecast({extData}) {
             key: 'date-ext',
         },
         {
-            title: 'Current Temp',
+            title: 'Average Temp',
             dataIndex: 'currentTemp',
             key: 'currentTemp-ext',
         },
