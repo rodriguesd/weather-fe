@@ -30,9 +30,9 @@ export default function CurrentForecast({currentData}) {
         {
             key: '100000',
             date: currentData.current.date,
-            currentTemp: currentData.current.currentTemp,
-            lowTemp: currentData.current.lowTemp,
-            highTemp: currentData.current.highTemp,
+            currentTemp: currentData.current.currentTemp + " °F",
+            lowTemp: currentData.current.lowTemp  + " °F",
+            highTemp: currentData.current.highTemp + " °F",
         }
     ];
 

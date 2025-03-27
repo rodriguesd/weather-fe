@@ -34,9 +34,9 @@ export default function ExtendedForecast({extData}) {
             dynamicData.push({
                 key: index,
                 date: entry.date,
-                currentTemp: entry.currentTemp,
-                lowTemp: entry.lowTemp,
-                highTemp: entry.highTemp
+                currentTemp: entry.currentTemp  + " °F",
+                lowTemp: entry.lowTemp  + " °F",
+                highTemp: entry.highTemp  + " °F"
             });
         });
 
